@@ -7,11 +7,13 @@
         background-color: grey;
     }
     </style>
+
     <title>Zombie Map</title>
   </head>
   <body>
     My zombie map
     <div id="zombie_map"></div>
+
     <form>
       <select id="icon_to_use">
         <option value="zombie.png">Zombie</option>
@@ -19,8 +21,18 @@
         <option value="weapons.png">Weapons</option>    
       </select>
     </form>
+
     <script>
+
        var zombie_map;
+       var data = `-26.201653859469136 27.95642852783203 zombie.png
+        -26.298955301979312 28.02783966064453 zombie.png
+        -26.18809909773477 27.973594665527344 hospital.png
+        -26.151123550771807 27.919692993164062 hospital.png
+        -26.17409534026763 27.80582654570314 hospital.png`;
+       var markers = data.split("\n");
+       var all_markers = [];
+
        function place_marker(location) {
           var emoji = document.getElementById('icon_to_use').value;
           var marker = new google.maps.Marker({
@@ -30,19 +42,26 @@
         });
           console.log(location.lat() + " " + location.lng() + " " + emoji);
        }
+
         function initMap() {
 
                 zombie_map = new google.maps.Map(document.getElementById('zombie_map'), {
                 zoom: 10,
                 center: {lat: -26.145676842005955, lng: 27.908371918874753}
            });
+
+                for(var i=0; i < markers.length; i++){
+                  console.log("There is a " + markers[i] + "<br>");
+                }
+            
             zombie_map.addListener('click', function(e) {
             var location = e.latLng;
             place_marker(location);
         });
       }
+
     </script>
-    Items I want to appear on my page will go here
+
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2r2k0VgvRbR4HVy0JiLlUT2ZwgMVrGCU&callback=initMap"> </script>
   </body>
 </html>
