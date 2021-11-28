@@ -49,31 +49,11 @@
                 zoom: 10,
                 center: {lat: -26.145676842005955, lng: 27.908371918874753}
            });
-
-                var marker = new google.maps.Marker({
-                 position: marker_position,
-                map: zombie_map,
-                icon: emoji
-                });
-
-                for(var i=0; i < markers.length; i++){
-                  document.write(markers[i]);
-                }
-                var marker_data = markers[i].trim();
-       marker_data = marker_data.split(" ");
-       var latitude = marker_data[0];
-       var longitude = marker_data[1];
-       var emoji = marker_data[3];
-       var marker_position = new google.maps.LatLng(###, ###);
-
-            
             zombie_map.addListener('click', function(e) {
             var location = e.latLng;
             place_marker(location);
         });
       }
-
-
 
     </script>
 
